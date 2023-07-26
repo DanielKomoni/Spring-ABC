@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">    
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>All Films</title>
+        <style>
+            .mainPage {
+              display: grid;
+              grid-template-columns: auto auto auto;
+              padding: 10px;
+            }
+           
+            .film-column {
+              border: 1px solid black;
+              width: 10vw;
+              min-width: 150px;
+            }
+            </style>
     </head>
 
     <body>
@@ -20,8 +33,13 @@
                     <li><a href="">Horror</a></li>
                 </ul>
             </div>
-            <div class="FilmList">
-                
+            <div class="filmList">
+                <ul class="film-column" th:each="film : ${films}">
+                    <h1 th:text="${film.title}"></h1>
+                    <h3 th:text="${film.tag}"></h3>
+                    <h3 th:text="${film.release_year}"></h3>
+                    <h3 th:text="${film.description}"></h3>
+                </ul>
             </div>
         </div>
     </body>
