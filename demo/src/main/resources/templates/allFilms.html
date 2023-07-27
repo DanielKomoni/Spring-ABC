@@ -1,27 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">    
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>All Films</title>
+        <style>
+            .mainPage {
+              display: grid;
+              grid-template-columns: auto auto auto;
+              padding: 10px;
+            }
+           
+            .film-column {
+              border: 1px solid black;
+              width: 10vw;
+              min-width: 150px;
+            }
+            </style>
     </head>
 
     <body>
         <div class="mainPage">
             <div class="tagList">
                 <ul>
-                    <li><a href="">Action</a></li>
-                    <li><a href="">Detectiv</a></li>
-                    <li><a href="">Romance</a></li>
-                    <li><a href="">War</a></li>
-                    <li><a href="">Comedy</a></li>
-                    <li><a href="">Drama</a></li>
-                    <li><a href="">Fantasy</a></li>
-                    <li><a href="">Horror</a></li>
+                    <li><a href="/films/allFilms">All</a></li>
+                    <li><a href="/films/allFilms/Action">Action</a></li>
+                    <li><a href="/films/allFilms/Detectiv">Detectiv</a></li>
+                    <li><a href="/films/allFilms/Romantic">Romantic</a></li>
+                    <li><a href="/films/allFilms/War">War</a></li>
+                    <li><a href="/films/allFilms/Comedy">Comedy</a></li>
+                    <li><a href="/films/allFilms/Drama">Drama</a></li>
+                    <li><a href="/films/allFilms/Fantasy">Fantasy</a></li>
+                    <li><a href="/films/allFilms/Horror">Horror</a></li>
                 </ul>
             </div>
-            <div class="FilmList">
-                
+            <div class="filmList">
+                <ul class="film-column" th:each="film : ${films}">
+                    <h1 th:text="${film.title}"></h1>
+                    <h3 th:text="${film.tag}"></h3>
+                    <h3 th:text="${film.release_year}"></h3>
+                    <h3 th:text="${film.description}"></h3>
+                </ul>
             </div>
         </div>
     </body>
