@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -27,8 +28,8 @@ public class PublicController {
         return "allFilms";
     }
 
-    @GetMapping("/film/{id}")
-    public String getFilmById(Model model, int id) {
+    @GetMapping("/filmId/{id}")
+    public String getFilmById(Model model, @PathVariable int id) {
 
         Film film = filmService.getFilmById(id);
         model.addAttribute("film", film);
