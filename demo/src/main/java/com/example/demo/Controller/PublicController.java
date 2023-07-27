@@ -37,7 +37,7 @@ public class PublicController {
     }
 
     @GetMapping("/film/{title}")
-    public String getFilmByTitle(Model model, String title) {
+    public String getFilmByTitle(Model model, @PathVariable String title) {
 
         Film film = filmService.getFilmByTitle(title);
         model.addAttribute("film", film);
