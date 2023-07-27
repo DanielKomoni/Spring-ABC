@@ -45,7 +45,7 @@ public class PublicController {
     }
 
     @GetMapping("/allFilms/{tag}")
-    public String getFilmsByTag(Model model, String tag) {
+    public String getFilmsByTag(Model model, @PathVariable String tag) {
 
         List<Film> films = filmService.getFilmsByTag(tag);
         model.addAttribute("films", films);
