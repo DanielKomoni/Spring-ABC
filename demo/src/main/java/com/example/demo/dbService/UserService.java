@@ -1,6 +1,5 @@
 package com.example.demo.dbService;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,5 +11,13 @@ public class UserService {
 
     public User getUserById(int id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+
+    public boolean isPasswordValid(String enteredPassword, String hashedPassword) {
+        return enteredPassword.equals(hashedPassword);
     }
 }
