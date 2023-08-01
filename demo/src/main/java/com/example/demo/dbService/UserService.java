@@ -16,8 +16,7 @@ public class UserService {
     public void createUser(User user) {
         userRepository.save(user);
     }
-
-    public boolean isPasswordValid(String enteredPassword, String hashedPassword) {
-        return enteredPassword.equals(hashedPassword);
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
