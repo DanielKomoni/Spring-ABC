@@ -34,10 +34,10 @@ public class SecurityController{
     @PostMapping("/auth/signup")
     public String SingUp(@RequestParam String username, @RequestParam String password,@RequestParam String email, Model model) {
         if (userService.findByUsername(username) != null) { 
-            model.addAttribute("message", "User exists!");
+            model.addAttribute("message", true);
             return "signup";
         }
-        String hashedPassword =PasswordHash.hashPassword(password);
+        String hashedPassword=PasswordHash.hashPassword(password);
 
 
         //якщо не забудеш зроби конструктор
