@@ -49,4 +49,20 @@ public class SecurityController{
         userService.createUser(user);
         return "redirect:/films/auth/login";
     }
+
+    @PostMapping("/auth/login")
+    public String LogIn(@RequestParam String username, @RequestParam String password, Model model) {
+        User user = userService.findByUsername(username);
+        if (user == null) {
+            model.addAttribute("message", true);
+            return "login";
+        }
+        
+        if (PasswordHash.isPasswordMatch(password, user.getPassword())) {
+            model.addAttribute("message", "Ti Daun");
+            return "allFilms";
+        }
+    
+        return "login";
+    }
 }
