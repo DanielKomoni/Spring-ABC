@@ -11,6 +11,14 @@
             width: 50%;
            }
         </style>
+        
+       
+        <script th:inline="javascript">
+            var massage = /*[[${message}]]*/ "false";
+            if(massage){
+                alert("Username exists");
+            }
+        </script>
     </head>
 
     <body>
