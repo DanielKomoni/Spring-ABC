@@ -34,7 +34,6 @@ public class SecurityController{
     @PostMapping("/auth/signup")
     public String SingUp(@RequestParam String username, @RequestParam String password,@RequestParam String email, Model model) {
         if (userService.findByUsername(username) != null) { 
-            model.addAttribute("message", true);
             return "signup";
         }
         String hashedPassword=PasswordHash.hashPassword(password);
@@ -54,15 +53,20 @@ public class SecurityController{
     public String LogIn(@RequestParam String username, @RequestParam String password, Model model) {
         User user = userService.findByUsername(username);
         if (user == null) {
-            model.addAttribute("message", true);
+            
             return "login";
         }
         
-        if (PasswordHash.isPasswordMatch(password, user.getPassword())) {
-            model.addAttribute("message", "Ti Daun");
-            return "allFilms";
+        if (username.equals(user.getUsername()) && PasswordHash.isPasswordMatch(password, user.getPassword())) {
+            return "redirect:/films/allFilms";
         }
-    
+        
+        /* 
+        if (PasswordHash.isPasswordMatch(password, user.getPassword())) {
+            
+            return "redirect:/films/allFilms";
+        }
+        */
         return "login";
     }
 }
