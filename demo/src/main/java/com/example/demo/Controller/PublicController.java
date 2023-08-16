@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.dbService.Film;
 import com.example.demo.dbService.FilmService;
 
+
 import org.springframework.ui.Model; 
 
 @Controller
@@ -22,7 +23,6 @@ public class PublicController {
 
     @GetMapping("/allFilms")
     public String getCatalogue(Model model) {
-
         List<Film> films = filmService.getAllFilms();
         model.addAttribute("films", films);
         return "allFilms";
