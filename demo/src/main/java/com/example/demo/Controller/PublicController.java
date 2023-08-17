@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.example.demo.Session.HttpSessionBean;
 import com.example.demo.dbService.Film;
 import com.example.demo.dbService.FilmService;
 
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model; 
 
@@ -18,8 +19,22 @@ import org.springframework.ui.Model;
 @RequestMapping("films")
 public class PublicController {
     
+    @Autowired 
+    private HttpSessionBean httpSessionBean;
+
     @Autowired
     private FilmService filmService;
+
+
+    @GetMapping("/lox")
+    public String lox(Model model, HttpServletResponse response) {
+        
+        httpSessionBean.setName("lox");
+
+
+        return "redirect:/films/allFilms";
+    }
+
 
     @GetMapping("/allFilms")
     public String getCatalogue(Model model) {
