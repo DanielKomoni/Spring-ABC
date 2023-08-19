@@ -38,6 +38,7 @@
             </div>
             <div class="actualUser">
                 <h1 th:text="${username}"></h1>
+                <a href="/films/logout">Logout</a>
             </div>
             <div class="filmList">
                 <ul class="film-column" th:each="film : ${films}">
