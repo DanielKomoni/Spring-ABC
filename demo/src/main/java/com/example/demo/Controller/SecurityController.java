@@ -4,19 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Security.PasswordHash;
+import com.example.demo.Session.HttpSessionBean;
 import com.example.demo.dbService.User;
 import com.example.demo.dbService.UserService;
 
 import org.springframework.ui.Model; 
 
 @Controller
-@RequestMapping("films")
 public class SecurityController{
     
+    @Autowired 
+    private HttpSessionBean httpSessionBean;
+
     @Autowired
     private UserService userService;    
 
@@ -37,15 +39,11 @@ public class SecurityController{
             return "signup";
         }
         String hashedPassword=PasswordHash.hashPassword(password);
+        
 
-
-        //якщо не забудеш зроби конструктор
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(hashedPassword);
-        user.setEmail(email);
-        user.setRole("ROLE_USER");
+        User user = new User(username, hashedPassword, email, "ROLE_USER");
         userService.createUser(user);
+
         return "redirect:/films/auth/login";
     }
 
@@ -57,16 +55,13 @@ public class SecurityController{
             return "login";
         }
         
+        httpSessionBean.setName(username);
+        
         if (username.equals(user.getUsername()) && PasswordHash.isPasswordMatch(password, user.getPassword())) {
             return "redirect:/films/allFilms";
         }
         
-        /* 
-        if (PasswordHash.isPasswordMatch(password, user.getPassword())) {
-            
-            return "redirect:/films/allFilms";
-        }
-        */
+    
         return "login";
     }
 }

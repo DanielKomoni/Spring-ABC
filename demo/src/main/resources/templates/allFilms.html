@@ -16,6 +16,8 @@
               width: 10vw;
               min-width: 150px;
             }
+
+            
             </style>
     </head>
 
@@ -33,6 +35,10 @@
                     <li><a href="/films/allFilms/Fantasy">Fantasy</a></li>
                     <li><a href="/films/allFilms/Horror">Horror</a></li>
                 </ul>
+            </div>
+            <div class="actualUser">
+                <h1 th:text="${username}"></h1>
+                <a href="/films/logout">Logout</a>
             </div>
             <div class="filmList">
                 <ul class="film-column" th:each="film : ${films}">
