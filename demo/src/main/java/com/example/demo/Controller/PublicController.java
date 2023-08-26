@@ -74,7 +74,7 @@ public class PublicController {
     
     @GetMapping("/logout")
     public String invalidateSession(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); 
+        HttpSession session = request.getSession();
         if (session != null) {
             session.invalidate(); 
         }
