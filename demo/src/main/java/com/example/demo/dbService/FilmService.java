@@ -30,8 +30,4 @@ public class FilmService {
         return filmRepository.findById(id).orElse(null);
     }
 
-
-    //public FilmService(FilmRepository filmRepository) {
-      //  this.filmRepository = filmRepository;
-    //}
 }

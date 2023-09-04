@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title >create account</title>
+        <style>
+           .box{
+            margin: 0 auto;
+            text-align: center;
+            width: 50%;
+           }
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <h1 class="header">Enter your account</h1>
+            <form method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <input type="submit" name="submit" value="Submit">
+            </form>
+            <p>Don't have an account? <a href="/films/auth/signup">Create one</a></p>
+        </div>
+    </body>
+
+</html> 
