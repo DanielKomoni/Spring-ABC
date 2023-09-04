@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import lombok.Data;
-
+//session bean
 @Data
 @SessionScope
 @Component
